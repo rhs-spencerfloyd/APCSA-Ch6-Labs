@@ -1,15 +1,15 @@
 package Sales;
 /**
- * Name:
- * Date:
- * Period:
+ * Name: Spencer Floyd
+ * Date: 10/23/18
+ * Period: 1
  *
  * Sales.Sales.java
  *
  * Reads in and stores sales for each of 5 salespeople.  Displays
  * sales entered by salesperson id and total sales for all salespeople.
  */
-import sun.jvm.hotspot.oops.Array;
+//import sun.jvm.hotspot.oops.Array;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -21,12 +21,9 @@ public class Sales
 
         Scanner scan = new Scanner(System.in);
 
-        //TODO 4) Prompt the user for the number of sales people that they need to enter
-        //TODO 4) and modify the program to create an appropriately sized array.
-
-        
-        final int SALESPEOPLE = 5;
-        int[] sales = new int[SALESPEOPLE];
+        System.out.print("How many salespeople? ");
+        int salespeople = scan.nextInt();
+        int[] sales = new int[salespeople];
         int sum;
 
         for (int i=0; i < sales.length; i++)
@@ -49,14 +46,18 @@ public class Sales
         System.out.println("\nTotal sales: " + sum);
 
 
-        //TODO 1b) Use your average method to print the average sales
+        //average method to print the average sales
+        System.out.println("\nAverage sales: " + average(sales));
 
 
-        //TODO 2b) Use your indexOfMax method to print the index of the best sales person
-        //TODO 2b) and the sales amount for that sales person.
+        //indexOfMax method to print the index of the best sales person
+        System.out.println("\nBest salesperson index: " + indexOfMax(sales));
+        System.out.println("Best salesperson sales: " + sales[indexOfMax(sales)]);
 
 
-        //TODO 3b) Do the same for the worst sales person
+        // Do the same for the worst sales person
+        System.out.println("\nWorst salesperson index: " + indexOfMin(sales));
+        System.out.println("Worst salesperson sales: " + sales[indexOfMin(sales)]);
 
 
 
@@ -64,21 +65,39 @@ public class Sales
 
     public static double average(int[] arr) throws IllegalStateException
     {
-        //TODO 1a) compute and return the average of arr
+        //compute and return the average of arr
         //Be sure to use the length instance variable and you may assume that the array is full.
         //If the array does not have at least 1 element in it, throw an IllegalStateException
-
-        return 0;
+        if (arr.length == 0)
+            throw new IllegalStateException();
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return (double) sum / arr.length;
     }
 
     public static int indexOfMax(int[] arr)
     {
-        //TODO 2a) find and return the index of the max value in arr
-
-        return 0;
+        // find and return the index of the max value in arr
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > arr[max])
+                max = i;
+        }
+        return max;
     }
 
-    //TODO 3a) Do the same for an indexOfMin method
-
+    //Do the same for an indexOfMin method
+    public static int indexOfMin(int[] arr)
+    {
+        // find and return the index of the max value in arr
+        int min = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < arr[min])
+                min = i;
+        }
+        return min;
+    }
 
 }
