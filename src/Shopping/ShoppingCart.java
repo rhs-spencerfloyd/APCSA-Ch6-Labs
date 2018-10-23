@@ -1,9 +1,9 @@
 package Shopping;
 
 /**
- * Name:
- * Date:
- * Period:
+ * Name: Spencer Floyd
+ * Date: 10/23/18
+ * Period: 1
  *
  * Shopping.ShoppingCart.java
  *
@@ -17,34 +17,36 @@ public class ShoppingCart
     private int itemCount;      // total number of items in the cart
     private double totalPrice;  // total price of items in the cart
     private int capacity;       // current cart capacity
-    //TODO 1a) Declare a cart instance variable
+    private Item[] cart; // Declare a cart instance variable
 
 
-    /**
-     * Creates an empty shopping cart with a capacity of 5 items
-     */
+    // Creates an empty shopping cart with a capacity of 5 items
     public ShoppingCart()
     {
         capacity = 5;
         itemCount = 0;
         totalPrice = 0.0;
-        //TODO 1a) Initialize the cart instance variable to the appropriate size
-
+        cart = new Item[capacity]; //Initialize the cart instance variable to the appropriate size
     }
 
-    /**
-     * Adds an item to the shopping cart.
-     * @param itemName
-     * @param price
-     * @param quantity
-     */
+
+    //Adds an item to the shopping cart.
+    //@param itemName
+    //@param price
+    //@param quantity
     public void addToCart(String itemName, double price, int quantity)
     {
-        //TODO 1b) Complete the addToCart method
+        // Complete the addToCart method
+        cart[itemCount] = new Item(itemName, price, quantity);
+        itemCount++;
+        totalPrice += price * quantity;
 
     }
 
-    //TODO 2b) Complete the getter method getTotalPrice. Remember the getter should not print anything.
+    // Complete the getter method getTotalPrice. Remember the getter should not print anything.
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
 
     public int getCartLength()
@@ -53,10 +55,7 @@ public class ShoppingCart
     }
 
 
-    /**
-     *
-     * @return the contents of the cart together with summary information
-     */
+    // @return the contents of the cart together with summary information
     public String toString()
     {
 	NumberFormat fmt = NumberFormat.getCurrencyInstance();
@@ -73,7 +72,7 @@ public class ShoppingCart
 
     }
 
-	contents += "\nTotal Price: " + fmt.format(totalPrice);
+	contents += "\nTotal Price: " + fmt.format(getTotalPrice());
 	contents += "\n";
 
 	return contents;
