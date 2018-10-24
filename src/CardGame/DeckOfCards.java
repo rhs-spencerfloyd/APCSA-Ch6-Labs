@@ -1,9 +1,9 @@
 package CardGame;
 
 /**
- * Name:
- * Date:
- * Period:
+ * Name: Spencer Floyd
+ * Date: 10-24-18
+ * Period: 1
  *
  * CardGame.DeckOfCards.java
  *
@@ -17,6 +17,7 @@ public class DeckOfCards {
     private final int NUMBER_OF_CARDS = 52;
     private String faces[] = {"Ace", "Deuce", "Three", "Four", "Five", "Six",
             "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+    private int values[] = {0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
     private String suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
     /**
@@ -30,7 +31,7 @@ public class DeckOfCards {
 
         // populate deck with Card objects
         for (int count = 0; count < deck.length; count ++)
-            deck [ count ] = new Card(faces[count % 13], suits [count / 13]);
+            deck [ count ] = new Card(faces[count % 13], suits [count / 13], values[count % 13]);
 
     } // end DeckOfCards constructor
 
