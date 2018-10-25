@@ -27,15 +27,19 @@ public class Blackjack {
         System.out.println("Dealer's First Card: " + dealer.get(0));
 
         // show player their cards
-        System.out.println("\n" + handToString(player));
+        System.out.println("\nYour hand: \n" + handToString(player));
 
         // check for instant win
         if (handValue(player) == 21) {
             System.out.println("You won Blackjack!");
+            // show dealer's ending hand
+            System.out.println("\nThe Dealer's ending hand was: \n" + handToString(dealer));
             System.exit(0);
         }
         if (handValue(dealer) == 21) {
             System.out.println("You lost Blackjack! The dealer's hand valued 21.");
+            // show dealer's ending hand
+            System.out.println("\nThe Dealer's ending hand was: \n" + handToString(dealer));
             System.exit(0);
         }
 
@@ -59,13 +63,23 @@ public class Blackjack {
                     dealer.add(deck.dealCard());
             }
 
+            // put a break in the console
+            System.out.println("----------------------------------------");
+
             // show player their new hand
-            System.out.println("\n" + handToString(player));
+            System.out.println("\nYour hand: \n" + handToString(player));
 
         } while (handValue(player) < 21 && handValue(dealer) < 21 && !input.equals("stay"));
 
+        // show dealer's ending hand
+        System.out.println("\nThe Dealer's ending hand was: \n" + handToString(dealer));
+
         // calculate win/loss
-        if (handValue(player) > 21 && handValue(dealer) > 21)
+        if (handValue(player) == 21)
+            System.out.println("\nYou got Blackjack, you win!");
+        else if (handValue(dealer) == 21)
+            System.out.println("\nThe dealer got Blackjack, you lost!");
+        else if (handValue(player) > 21 && handValue(dealer) > 21)
             System.out.println("\nIt's a tie! You and the dealer both busted!");
         else if (handValue(player) > 21)
             System.out.println("\nYou busted! Better luck next time!");
@@ -73,9 +87,13 @@ public class Blackjack {
             System.out.println("\nYou win, the dealer busted!");
         else {
             if (handValue(player) > handValue(dealer))
-                System.out.println("\nYou win, your hand was closer to 21 than the dealer! \nTheir hand totaled " + handValue(dealer) + ".");
-            else
-                System.out.println("\nYou lost, your hand was farther from 21 than the dealer! \nTheir hand totaled " + handValue(dealer) + ".");
+                System.out.println("\nYou win, your hand was closer to 21 than the dealer!");
+            else {
+                if (handValue(player) == handValue(dealer))
+                    System.out.println("\nIt's a tie! You and the dealer both had " + handValue(player) + "!");
+                else
+                    System.out.println("\nYou lost, your hand was farther from 21 than the dealer!");
+            }
         }
         System.exit(0);
 
@@ -84,7 +102,7 @@ public class Blackjack {
 
     // takes hand as input, outputs nicely formatted string
     public static String handToString(ArrayList<Card> hand) {
-        String output = "Your hand: \n";
+        String output = "";
 
         for (Card card : hand) {
             output += card + "\n";
